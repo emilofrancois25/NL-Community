@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services dispo sur NL Commnunity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a  100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #000000;
+            color: #079992;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-section {
+            padding: 30px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: #079992;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #000000;
+            border-radius: 2px;
+        }
+
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .menu-table th {
+            background: #079992;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-table td {
+            padding: 20px;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-table tr:hover td {
+            background: linear-gradient(90deg, #f8f9fa, #e9ecef);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .item-description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            text-align: center;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .quantity-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .cart-summary {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .cart-summary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .cart-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #00b894;
+        }
+
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .menu-table {
+                font-size: 0.9rem;
+            }
+            
+            .menu-table th,
+            .menu-table td {
+                padding: 15px 10px;
+            }
+        }
+
+        /* Section de commande améliorée */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h3 {
+            font-size: 2rem;
+            color: #079992;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #000000;
+            border-radius: 2px;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-form label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #079992;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 18px 35px;
+            background: #079992;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            align-self: center;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px #079992;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .contact-form h3 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NL community</h1>
+            <p style="color: #ffffff;">Découvrez nos services</p>
+        </div>
+
+        <div class="menu-section">
+         <section id="formation">   
+            <h2 class="category-title">Formation pour debutant</h2>
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>Découvrez les bases essentielles :</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="item-name">Comprendre les marchés financiers</div>
+                            <div class="item-description">Comprenez le fonctionnement des marchés boursiers, les différentes catégories d'actifs ainsi que les processus de négociation.</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="item-name"> Lire et analyser un graphique</div>
+                            <div class="item-description">Acquérez une maîtrise de l'analyse technique, des indicateurs et de la décodage des tendances.</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="item-name">Découvrir les outils principaux</div>
+                            <div class="item-description">Découvrez les plateformes de négociation, les outils d'analyse et les calculateurs de risques.</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="item-name">Faire vos premiers pas en toute sécurité</div>
+                            <div class="item-description">Démarrez avec des stratégies élémentaires, gestion des risques et comptes de simulation.</div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+         </section>  
+
+          <section>
+            <h2 class="category-title">Formation pour intermediaire</h2>
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>Approfondissez l'analyse technique avancée :</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="item-name">Stratégies avancées utilisées par les pros</div>
+                            <div class="item-description"> Découvrez les méthodes éprouvées et les techniques secrètes des traders professionnels. </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="item-name">Gestion stricte du risque et du capital</div>
+                            <div class="item-description">Apprenez à sécuriser votre capital en adoptant des règles de gestion financière irréprochables.</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="item-name">Mise en place de setups clairs et reproductibles</div>
+                            <div class="item-description">Élaborez des configurations de trading exactes afin d'optimiser vos probabilités de réussite.</div>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>
+                            <div class="item-name">Développement de votre propre style de trading</div>
+                            <div class="item-description">Adoptez des stratégies de trading qui correspondent à votre personnalité pour construire votre identité en tant que trader.</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+         </section>
+
+         <section id="Coaching">
+            <h2 class="category-title">Coaching</h2>
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>Pour vous rendre indépendant et sûr de vous sur les marchés :</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="item-name">Séances individuelles ou en petit groupe</div>
+                            <div class="item-description">Profitez d'une assistance sur mesure avec un suivi ajusté à votre cadence.</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="item-name"> Conseils pratiques, discipline et mindset de trader</div>
+                            <div class="item-description"> Développez l'état d'esprit victorieux et la psychologie nécessaires pour réussir dans le trading.</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="item-name">Adapté à tous les niveaux</div>
+                            <div class="item-description">Nos formations sont conçues pour s'ajuster à votre niveau, que vous soyez novice ou trader chevronné.</div>
+                        </td>
+                </tbody>
+            </table>
+         </section>   
+
+        </div>
+    </div>
+
+    <!-- Section de commande améliorée -->
+    <div class="contact-form">
+        <h3> Envoyez votre commande</h3>
+        
+        <form action="https://formspree.io/forms/mnngqyao/integration" method="POST">
+            <label>
+                Votre Email:
+                <input type="email" name="email" required placeholder="votre.email@exemple.com">
+            </label>
+            
+            
+            <!-- Champs supplémentaires -->
+            <label>
+                Nom complet:
+                <input type="text" name="name" required placeholder="Votre nom et prénom">
+            </label>
+            
+            <label>
+                Téléphone:
+                <input type="tel" name="phone" required placeholder="Votre numéro de téléphone">
+            </label>
+            
+            <label>
+                Adresse :
+                <input name="address" required placeholder="Votre adresse "></input>
+            </label>
+
+            <label>
+                Votre demande:
+                <textarea name="message" required placeholder="Décrivez votre demande en détail (niveau, formation ou Coaching, etc.)"></textarea>
+            </label>
+            
+            <button type="submit" class="submit-btn"> Envoyer la demande</button>
+            <a href="index.html" style="text-decoration: none;margin-left: 180px; color: #079992;"> revenir a la page Accueil</a>
+        </form>
+        
+    </div>
+</body>
+</html>
